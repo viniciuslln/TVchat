@@ -5,7 +5,10 @@
  */
 package RMIConection;
 
+import Models.Menssagem;
 import Models.User;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -15,6 +18,7 @@ public class Connection {
     private static Connection INSTANCE;
     
     private User mainUser;
+    private List<User> usersList = new ArrayList<>();
     
     private Connection(){}
     
@@ -37,4 +41,48 @@ public class Connection {
     public void conectar(String ip, int port){
         
     }
+    
+    
+    ///---------------------LISTENERS--------------------------------------
+    
+    List<UserAddedListener> userAddedListenerlist;
+    List<UserRemovedListener> userRemovedListenerlist;
+    List<MessageRecievedListener> messageRecievedListenerlist;
+        
+    public void addUserAddedListener( UserAddedListener listener ){
+        this.userAddedListenerlist.add(listener);
+    }
+    public void addUserRemovedListener( UserRemovedListener listener ){
+        this.userRemovedListenerlist.add(listener);
+    }
+    public void addMessageRecievedListener( MessageRecievedListener listener ){
+        this.messageRecievedListenerlist.add(listener);
+    }
+    
+    public void addUser(User user){
+        this.usersList.add(user);
+        this.userAddedListenerlist.forEach(action -> action.onUserAdded(user));
+    }
+    
+    public void removeUser(User user){
+        this.usersList.remove(user);
+        this.userRemovedListenerlist.forEach(action -> action.onUserRemoved(user));
+    }
+    
+    public void recieveMessage(Menssagem message){
+        this.messageRecievedListenerlist.forEach(action -> action.onMessageRecieved(message));
+    }
+    
+    public interface UserAddedListener{ 
+        public void onUserAdded(User user);
+    }
+    
+    public interface UserRemovedListener{ 
+        public void onUserRemoved(User user);
+    }
+    
+    public interface MessageRecievedListener{ 
+        public void onMessageRecieved(Menssagem message);
+    }
+        
 }

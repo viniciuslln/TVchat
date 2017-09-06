@@ -5,7 +5,7 @@
  */
 package Telas.Chat;
 
-import Models.Mensagem;
+import Models.Menssagem;
 import Models.User;
 import RMIConection.Connection;
 import java.net.URL;
@@ -30,8 +30,8 @@ public class ChatController implements Initializable {
 
     public ListView<User> list_clients;
     ObservableList<User> listUsers;
-    public ListView<Mensagem> list_chat;
-    ObservableList<Mensagem> listMessages;
+    public ListView<Menssagem> list_chat;
+    ObservableList<Menssagem> listMessages;
     public Button button_send;
     public TextArea text_message;
     
@@ -57,21 +57,32 @@ public class ChatController implements Initializable {
            }
         });
         
+        // Seta listeners com a classe conection para atualizar a interface
+        Connection.getInstance().addUserAddedListener((User user) -> {
+            this.listUsers.add(user);
+        });
+        
+        Connection.getInstance().addUserRemovedListener((user) -> {
+            this.listUsers.remove(user);
+        });
+        
+        Connection.getInstance().addMessageRecievedListener((mensagem) -> {
+            this.listMessages.add(mensagem);
+        });
     }    
-    
 
     private void enviarMensagem() {
         String mensagem = text_message.getText();
         if(mensagem.isEmpty())
             return;
         text_message.setText("");
-        listMessages.add(new Mensagem(mensagem, Connection.getInstance().getMainUser()));
+        listMessages.add(new Menssagem(mensagem, Connection.getInstance().getMainUser()));
         list_chat.scrollTo(listMessages.size() -1);
         //TODO enviar
     }
     
     private void addUser(User user){
-        
+        listUsers.add(user);
     }
     
     

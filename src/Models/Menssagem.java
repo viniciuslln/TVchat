@@ -9,11 +9,11 @@ package Models;
  *
  * @author 912313
  */
-public class Mensagem {
+public class Menssagem {
     private String mensagem;
     private User user;
 
-    public Mensagem(String mensagem, User user) {
+    public Menssagem(String mensagem, User user) {
         this.mensagem = mensagem;
         this.user = user;
     }
