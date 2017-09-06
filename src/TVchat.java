@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tvchat;
+
 
 import com.sun.deploy.util.FXLoader;
 import java.io.IOException;
@@ -27,7 +27,7 @@ public class TVchat extends Application {
         
 //        StackPane root = new StackPane();
 //        root.getChildren().add(btn);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/tvchat/Telas/Chat/Chat.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Telas/Chat/Chat.fxml"));
         Scene scene = new Scene(loader.load());
         
 //        Scene scene = new Scene(root, 300, 250);
