@@ -70,6 +70,11 @@ public class ChatController implements Initializable {
             this.listMessages.add(mensagem);
         });
     }    
+    
+    public void setarMensagemDireta(User user){
+        this.text_message.setText("@"+user.getNick()+": ");
+        this.text_message.setFocusTraversable(true);
+    }
 
     private void enviarMensagem() {
         String mensagem = text_message.getText();

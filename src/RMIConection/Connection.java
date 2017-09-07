@@ -39,15 +39,35 @@ public class Connection {
     }
     
     public void conectar(String ip, int port){
-        
+        mainUser = new User();
+        this.connectionListenerListenerlist.forEach(action-> action.onConectedAdded(mainUser));
     }
     
+    public void desconectar(){
+        
+        this.connectionListenerListenerlist.forEach(action-> action.onDesconectedAdded(mainUser));
+    }
+    
+    private void addUser(User user){
+        this.usersList.add(user);
+        this.userAddedListenerlist.forEach(action -> action.onUserAdded(user));
+    }
+    
+    private void removeUser(User user){
+        this.usersList.remove(user);
+        this.userRemovedListenerlist.forEach(action -> action.onUserRemoved(user));
+    }
+    
+    private void recieveMessage(Menssagem message){
+        this.messageRecievedListenerlist.forEach(action -> action.onMessageRecieved(message));
+    }
     
     ///---------------------LISTENERS--------------------------------------
     
-    List<UserAddedListener> userAddedListenerlist;
-    List<UserRemovedListener> userRemovedListenerlist;
-    List<MessageRecievedListener> messageRecievedListenerlist;
+    List<UserAddedListener> userAddedListenerlist = new ArrayList<>();
+    List<UserRemovedListener> userRemovedListenerlist = new ArrayList<>();
+    List<MessageRecievedListener> messageRecievedListenerlist = new ArrayList<>();
+    List<ConnectionListener> connectionListenerListenerlist = new ArrayList<>();
         
     public void addUserAddedListener( UserAddedListener listener ){
         this.userAddedListenerlist.add(listener);
@@ -59,18 +79,9 @@ public class Connection {
         this.messageRecievedListenerlist.add(listener);
     }
     
-    public void addUser(User user){
-        this.usersList.add(user);
-        this.userAddedListenerlist.forEach(action -> action.onUserAdded(user));
-    }
-    
-    public void removeUser(User user){
-        this.usersList.remove(user);
-        this.userRemovedListenerlist.forEach(action -> action.onUserRemoved(user));
-    }
-    
-    public void recieveMessage(Menssagem message){
-        this.messageRecievedListenerlist.forEach(action -> action.onMessageRecieved(message));
+    public interface ConnectionListener{ 
+        public void onConectedAdded(User user);
+        public void onDesconectedAdded(User user);
     }
     
     public interface UserAddedListener{ 

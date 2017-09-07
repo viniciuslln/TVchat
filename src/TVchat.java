@@ -35,6 +35,10 @@ public class TVchat extends Application {
         primaryStage.setTitle("Hello World!");
         primaryStage.setScene(scene);
         primaryStage.show();
+        
+        primaryStage.setOnCloseRequest(event -> {
+            System.out.println("Fechou      !");
+        });
     }
 
     /**
