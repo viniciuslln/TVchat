@@ -20,7 +20,7 @@ import javafx.stage.Stage;
  *
  * @author 912313
  */
-public class TVchat extends Application {
+public class TVchatClient extends Application {
     
     @Override
     public void start(Stage primaryStage) throws IOException {

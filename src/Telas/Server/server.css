@@ -1,0 +1,16 @@
+/*
+ * Empty Stylesheet file.
+ */
+.mainFxmlClass {
+}
+.inputFlat{
+    -fx-text-fill: white;
+}
+.inputFlat:focus{
+    -fx-faint-focus-color: transparent;
+    -fx-focus-color:rgba(255,0,0,0.2); 
+}
+.buttonFlat:pressed{
+    -fx-background-color:#ffffff;
+    cursor: zoom-in;
+}
