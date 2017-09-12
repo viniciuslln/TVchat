@@ -3,6 +3,7 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Tab?>
@@ -17,7 +18,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane id="AnchorPane" prefHeight="450.0" prefWidth="986.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111" fx:controller="Telas.Server.ServerMainScreenController">
+<AnchorPane id="AnchorPane" prefHeight="450.0" prefWidth="986.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.101" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Telas.Server.ServerMainScreenController">
     <stylesheets>
         <URL value="@servermainscreen.css" />
     </stylesheets>
@@ -164,7 +165,10 @@
                      <tabs>
                         <Tab text="Sala 1">
                            <content>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="300.0" />
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="300.0">
+                                 <children>
+                                    <ListView layoutX="34.0" layoutY="37.0" prefHeight="409.0" prefWidth="300.0" style="-fx-background-color: #4ca8b0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                 </children></AnchorPane>
                            </content>
                         </Tab>
                      </tabs>
