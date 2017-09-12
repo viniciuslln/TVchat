@@ -24,21 +24,28 @@ public class ServerMainScreenController implements Initializable {
     
     ObservableList<Room> salas;
     int numSalas;
+    int numPorta;
+    int numUsuariosPorSalas;
 
-    public ServerMainScreenController(int numSalas) {
-        this.salas = FXCollections.observableArrayList();
+    public void setNumSalas(int numSalas) {
         this.numSalas = numSalas;
     }
-    
-    
+
+    public void setPorta(int numPorta) {
+        this.numPorta = numPorta;
+    }
+
+    public void setUsuariosPorSalas(int numUsuariosPorSalas) {
+        this.numUsuariosPorSalas = numUsuariosPorSalas;
+    }
+        
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        
-        
+        this.salas = FXCollections.observableArrayList();         
     }    
+
     
 }

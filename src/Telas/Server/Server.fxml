@@ -39,7 +39,7 @@
                               <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField promptText="XXXX" style="-fx-background-color: #00838f;" styleClass="inputFlat" stylesheets="@server.css">
+                        <TextField fx:id="inputPorta" promptText="XXXX" style="-fx-background-color: #00838f;" styleClass="inputFlat" stylesheets="@server.css">
                            <VBox.margin>
                               <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
                            </VBox.margin>
@@ -56,7 +56,7 @@
                               <Insets bottom="6.0" left="6.0" right="6.0" top="24.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField promptText="XX" style="-fx-background-color: #00838f;" styleClass="inputFlat" stylesheets="@server.css">
+                        <TextField fx:id="inputSalas" promptText="XX" style="-fx-background-color: #00838f;" styleClass="inputFlat" stylesheets="@server.css">
                            <VBox.margin>
                               <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
                            </VBox.margin>
@@ -73,7 +73,7 @@
                               <Insets bottom="6.0" left="6.0" right="6.0" top="24.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField promptText="XX" style="-fx-background-color: #00838f;" styleClass="inputFlat" stylesheets="@server.css">
+                        <TextField fx:id="inputUsuariosPorSala" promptText="XX" style="-fx-background-color: #00838f;" styleClass="inputFlat" stylesheets="@server.css">
                            <VBox.margin>
                               <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
                            </VBox.margin>
@@ -87,7 +87,7 @@
                         <Insets bottom="70.0" left="40.0" right="40.0" top="40.0" />
                      </padding>
                   </VBox>
-                  <Button fx:id="buttonConnect" alignment="CENTER" mnemonicParsing="false" prefHeight="45.0" prefWidth="111.0" style="-fx-background-color: #4fb3bf; -fx-border-radius: 0; -fx-background-radius: 0;" styleClass="buttonFlat" stylesheets="@server.css" text="CONECTAR" textFill="WHITE" AnchorPane.bottomAnchor="24.0" AnchorPane.rightAnchor="24.0">
+                  <Button fx:id="buttonConnect" alignment="CENTER" mnemonicParsing="false" onAction="#onButtonConectarAction" prefHeight="45.0" prefWidth="111.0" style="-fx-background-color: #4fb3bf; -fx-border-radius: 0; -fx-background-radius: 0;" styleClass="buttonFlat" stylesheets="@server.css" text="CONECTAR" textFill="WHITE" AnchorPane.bottomAnchor="24.0" AnchorPane.rightAnchor="24.0">
                      <font>
                         <Font name="Open Sans SemiBold" size="12.0" />
                      </font>

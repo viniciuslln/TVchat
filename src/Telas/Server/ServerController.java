@@ -5,9 +5,21 @@
  */
 package Telas.Server;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -16,12 +28,57 @@ import javafx.fxml.Initializable;
  */
 public class ServerController implements Initializable {
 
+    @FXML
+    private TextField inputPorta;
+
+    @FXML
+    private TextField inputSalas;
+
+    @FXML
+    private TextField inputUsuariosPorSala;
+
+    @FXML
+    private Button buttonConnect;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    
+        inputPorta.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                inputPorta.setText(newValue.replaceAll("[^\\d]", ""));
+            }
+        });
+        inputSalas.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                inputSalas.setText(newValue.replaceAll("[^\\d]", ""));
+            }
+        });
+        inputUsuariosPorSala.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                inputUsuariosPorSala.setText(newValue.replaceAll("[^\\d]", ""));
+            }
+        });
+    }
+
+    @FXML
+    void onButtonConectarAction(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ServerMainScreen.fxml"));
+
+        Parent parent = loader.load();
+
+        ServerMainScreenController controller = loader.<ServerMainScreenController>getController();
+        controller.setPorta(Integer.parseInt(this.inputPorta.getText()));
+        controller.setNumSalas(Integer.parseInt(this.inputSalas.getText()));
+        controller.setUsuariosPorSalas(Integer.parseInt(this.inputUsuariosPorSala.getText()));
+
+        Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(parent);
+
+        appStage.setScene(scene);
+        appStage.show();
+
+    }
+
 }

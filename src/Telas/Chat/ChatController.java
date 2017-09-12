@@ -7,7 +7,7 @@ package Telas.Chat;
 
 import Models.Menssagem;
 import Models.User;
-import RMIConection.Connection;
+import RMIConection.ClientConnection;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -58,15 +58,15 @@ public class ChatController implements Initializable {
         });
         
         // Seta listeners com a classe conection para atualizar a interface
-        Connection.getInstance().addUserAddedListener((User user) -> {
+        ClientConnection.getInstance().addUserAddedListener((User user) -> {
             this.listUsers.add(user);
         });
         
-        Connection.getInstance().addUserRemovedListener((user) -> {
+        ClientConnection.getInstance().addUserRemovedListener((user) -> {
             this.listUsers.remove(user);
         });
         
-        Connection.getInstance().addMessageRecievedListener((mensagem) -> {
+        ClientConnection.getInstance().addMessageRecievedListener((mensagem) -> {
             this.listMessages.add(mensagem);
         });
     }    
@@ -81,7 +81,7 @@ public class ChatController implements Initializable {
         if(mensagem.isEmpty())
             return;
         text_message.setText("");
-        listMessages.add(new Menssagem(mensagem, Connection.getInstance().getMainUser()));
+        listMessages.add(new Menssagem(mensagem, ClientConnection.getInstance().getMainUser()));
         list_chat.scrollTo(listMessages.size() -1);
         //TODO enviar
     }

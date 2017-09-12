@@ -14,17 +14,17 @@ import java.util.List;
  *
  * @author 912313
  */
-public class Connection {
-    private static Connection INSTANCE;
+public class ClientConnection {
+    private static ClientConnection INSTANCE;
     
     private User mainUser;
     private List<User> usersList = new ArrayList<>();
     
-    private Connection(){}
+    private ClientConnection(){}
     
-    public static Connection  getInstance(){
+    public static ClientConnection  getInstance(){
         if(INSTANCE == null){
-            INSTANCE = new Connection();
+            INSTANCE = new ClientConnection();
         }        
         return INSTANCE;
     }
