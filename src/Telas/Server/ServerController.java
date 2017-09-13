@@ -5,6 +5,7 @@
  */
 package Telas.Server;
 
+import RMIConection.ServerConnection;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -64,21 +65,31 @@ public class ServerController implements Initializable {
 
     @FXML
     void onButtonConectarAction(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("ServerMainScreen.fxml"));
+        try {
+            ServerConnection.getInstance().setNumPorta(Integer.parseInt(this.inputPorta.getText()));
+            ServerConnection.getInstance().setNumSalas(Integer.parseInt(this.inputSalas.getText()));
+            ServerConnection.getInstance().setNumUsuariosPorSalas(Integer.parseInt(this.inputUsuariosPorSala.getText()));
+            ServerConnection.getInstance().start();
 
-        Parent parent = loader.load();
+            //Abrir tela 
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ServerMainScreen.fxml"));
 
-        ServerMainScreenController controller = loader.<ServerMainScreenController>getController();
-        controller.setPorta(Integer.parseInt(this.inputPorta.getText()));
-        controller.setNumSalas(Integer.parseInt(this.inputSalas.getText()));
-        controller.setUsuariosPorSalas(Integer.parseInt(this.inputUsuariosPorSala.getText()));
-        controller.iniciarVariaveis();
+            Parent parent = loader.load();
 
-        Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(parent);
+            ServerMainScreenController controller = loader.<ServerMainScreenController>getController();
+            controller.setPorta(Integer.parseInt(this.inputPorta.getText()));
+            controller.setNumSalas(Integer.parseInt(this.inputSalas.getText()));
+            controller.setUsuariosPorSalas(Integer.parseInt(this.inputUsuariosPorSala.getText()));
+            controller.iniciarVariaveis();
 
-        appStage.setScene(scene);
-        appStage.show();
+            Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(parent);
+
+            appStage.setScene(scene);
+            appStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 

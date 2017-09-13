@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -26,6 +26,8 @@ import javafx.scene.text.Text;
  *
  * @author vinic
  */
+
+
 public class ServerMainScreenController implements Initializable {
 
     @FXML
@@ -74,18 +76,20 @@ public class ServerMainScreenController implements Initializable {
     }
 
     void iniciarVariaveis() {
-        for (int i = 0; i < numSalas; i++) {
-            Tab t = new Tab("Sala " + i);
-            AnchorPane a = new AnchorPane();
-            ListView<User> l = new ListView<>();
-            AnchorPane.setBottomAnchor(l, 0.0);
-            AnchorPane.setLeftAnchor(l, 0.0);
-            AnchorPane.setRightAnchor(l, 0.0);
-            AnchorPane.setTopAnchor(l, 0.0);
-            l.setItems(ServerConnection.getInstance().getSalas().get(i).getUsuarios());
-            a.getChildren().add(l);
-            t.setContent(a);
-            tabPaneSalas.getTabs().add(t);
+        if (ServerConnection.getInstance().getSalas().size() > 0) {
+            for (int i = 0; i < numSalas; i++) {
+                Tab t = new Tab("Sala " + i);
+                AnchorPane a = new AnchorPane();
+                ListView<User> l = new ListView<>();
+                AnchorPane.setBottomAnchor(l, 0.0);
+                AnchorPane.setLeftAnchor(l, 0.0);
+                AnchorPane.setRightAnchor(l, 0.0);
+                AnchorPane.setTopAnchor(l, 0.0);
+                l.setItems(ServerConnection.getInstance().getSalas().get(i).getUsuarios());
+                a.getChildren().add(l);
+                t.setContent(a);
+                tabPaneSalas.getTabs().add(t);
+            }
         }
     }
 

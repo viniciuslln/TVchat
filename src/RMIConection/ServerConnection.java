@@ -6,6 +6,7 @@
 package RMIConection;
 
 import Models.Room;
+import Models.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -42,6 +43,10 @@ public class ServerConnection extends SuperConnection {
         this.numSalas = numSalas;
         for (int i = 0; i < this.numSalas; i++) {
             this.salas.add(new Room(i));
+            this.salas.get(i).getUsuarios().add(
+                    new User("teste "+i, "teste", "teste", i)
+            );
+                    
         }
         this.prontoParaIniciar = !((numSalas == 0) || (numPorta == 0) || (numUsuariosPorSalas == 0));
         return INSTANCE;

@@ -15,6 +15,17 @@ public class User {
     private String add;
     private int roomId;
 
+    public User() {
+    }
+
+    public User(String nick, String id, String add, int roomId) {
+        this.nick = nick;
+        this.id = id;
+        this.roomId = roomId;
+    }
+
+    
+    
     public String getNick() {
         return nick;
     }

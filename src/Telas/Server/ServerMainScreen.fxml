@@ -159,7 +159,7 @@
                   </VBox>
                </children>
             </AnchorPane>
-            <AnchorPane maxWidth="400.0" prefWidth="200.0" stylesheets="@servermainscreen.css" GridPane.columnIndex="1">
+            <AnchorPane maxWidth="500.0" prefWidth="400.0" stylesheets="@servermainscreen.css" GridPane.columnIndex="1">
                <children>
                   <TabPane fx:id="tabPaneSalas" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <tabs>
