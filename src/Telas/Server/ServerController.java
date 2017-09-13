@@ -72,6 +72,7 @@ public class ServerController implements Initializable {
         controller.setPorta(Integer.parseInt(this.inputPorta.getText()));
         controller.setNumSalas(Integer.parseInt(this.inputSalas.getText()));
         controller.setUsuariosPorSalas(Integer.parseInt(this.inputUsuariosPorSala.getText()));
+        controller.iniciarVariaveis();
 
         Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(parent);

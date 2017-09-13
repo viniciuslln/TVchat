@@ -13,6 +13,7 @@ public class User {
     private String nick;
     private String id;
     private String add;
+    private int roomId;
 
     public String getNick() {
         return nick;
@@ -38,11 +39,17 @@ public class User {
         this.add = add;
     }
 
+    public int getRoomId() {
+        return roomId;
+    }
+
+    public void setRoomId(int roomId) {
+        this.roomId = roomId;
+    }
+    
     @Override
     public String toString() {
         return this.nick;
     }
-    
-    
     
 }

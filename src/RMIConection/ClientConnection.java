@@ -5,7 +5,12 @@
  */
 package RMIConection;
 
+import RMIConection.Interfaces.ConnectionListener;
+import RMIConection.Interfaces.MessageRecievedListener;
+import RMIConection.Interfaces.UserRemovedListener;
+import RMIConection.Interfaces.UserAddedListener;
 import Models.Menssagem;
+import Models.Room;
 import Models.User;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,18 +19,20 @@ import java.util.List;
  *
  * @author 912313
  */
-public class ClientConnection {
+public class ClientConnection extends SuperConnection {
+
     private static ClientConnection INSTANCE;
-    
+
     private User mainUser;
-    private List<User> usersList = new ArrayList<>();
-    
-    private ClientConnection(){}
-    
-    public static ClientConnection  getInstance(){
-        if(INSTANCE == null){
+    private Room usersList;
+
+    private ClientConnection() {
+    }
+
+    public static ClientConnection getInstance() {
+        if (INSTANCE == null) {
             INSTANCE = new ClientConnection();
-        }        
+        }
         return INSTANCE;
     }
 
@@ -37,63 +44,30 @@ public class ClientConnection {
         u.setNick("Fulanim");
         return u;
     }
-    
-    public void conectar(String ip, int port){
+
+    public void conectar(String ip, int port) {
         mainUser = new User();
-        this.connectionListenerListenerlist.forEach(action-> action.onConectedAdded(mainUser));
+        // TODO
+        this.connectionListenerListenerlist.forEach(action -> action.onConectedAdded(mainUser));
     }
-    
-    public void desconectar(){
-        
-        this.connectionListenerListenerlist.forEach(action-> action.onDesconectedAdded(mainUser));
+
+    public void desconectar() {
+        // TODO
+        this.connectionListenerListenerlist.forEach(action -> action.onDesconectedAdded(mainUser));
     }
-    
-    private void addUser(User user){
-        this.usersList.add(user);
+
+    private void addUser(User user) {
+        this.usersList.getUsuarios().add(user);
         this.userAddedListenerlist.forEach(action -> action.onUserAdded(user));
     }
-    
-    private void removeUser(User user){
-        this.usersList.remove(user);
+
+    private void removeUser(User user) {
+        this.usersList.getUsuarios().remove(user);
         this.userRemovedListenerlist.forEach(action -> action.onUserRemoved(user));
     }
-    
-    private void recieveMessage(Menssagem message){
+
+    private void recieveMessage(Menssagem message) {
         this.messageRecievedListenerlist.forEach(action -> action.onMessageRecieved(message));
     }
-    
-    ///---------------------LISTENERS--------------------------------------
-    
-    List<UserAddedListener> userAddedListenerlist = new ArrayList<>();
-    List<UserRemovedListener> userRemovedListenerlist = new ArrayList<>();
-    List<MessageRecievedListener> messageRecievedListenerlist = new ArrayList<>();
-    List<ConnectionListener> connectionListenerListenerlist = new ArrayList<>();
-        
-    public void addUserAddedListener( UserAddedListener listener ){
-        this.userAddedListenerlist.add(listener);
-    }
-    public void addUserRemovedListener( UserRemovedListener listener ){
-        this.userRemovedListenerlist.add(listener);
-    }
-    public void addMessageRecievedListener( MessageRecievedListener listener ){
-        this.messageRecievedListenerlist.add(listener);
-    }
-    
-    public interface ConnectionListener{ 
-        public void onConectedAdded(User user);
-        public void onDesconectedAdded(User user);
-    }
-    
-    public interface UserAddedListener{ 
-        public void onUserAdded(User user);
-    }
-    
-    public interface UserRemovedListener{ 
-        public void onUserRemoved(User user);
-    }
-    
-    public interface MessageRecievedListener{ 
-        public void onMessageRecieved(Menssagem message);
-    }
-        
+
 }

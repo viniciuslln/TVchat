@@ -5,30 +5,69 @@
  */
 package RMIConection;
 
+import Models.Room;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 /**
  *
  * @author vinic
  */
-public class ServerConnection {
+public class ServerConnection extends SuperConnection {
 
     private static ServerConnection INSTANCE;
-    private ServerConnection(){};
-    
+
+    int numSalas = 0;
+    int numPorta = 0;
+    int numUsuariosPorSalas = 0;
     boolean prontoParaIniciar;
     
-    public static ServerConnection  getInstance(){
-        if(INSTANCE == null){
+    ObservableList<Room> salas = FXCollections.observableArrayList();;
+
+    private ServerConnection() {
+    }
+
+    public static ServerConnection getInstance() {
+        if (INSTANCE == null) {
             INSTANCE = new ServerConnection();
-        }        
+        }
         return INSTANCE;
     }
-    
-    public void start() throws Exception{
-        if(prontoParaIniciar)
-        {
-            
-        }
-        else
-            throw new Exception("Não foram informadas todas informações para iniciar");
+
+    public ObservableList<Room> getSalas() {
+        return salas;
     }
+    
+    public ServerConnection setNumSalas(int numSalas) {
+        this.numSalas = numSalas;
+        for (int i = 0; i < this.numSalas; i++) {
+            this.salas.add(new Room(i));
+        }
+        this.prontoParaIniciar = !((numSalas == 0) || (numPorta == 0) || (numUsuariosPorSalas == 0));
+        return INSTANCE;
+    }
+
+    public ServerConnection setNumPorta(int numPorta) {
+        this.numPorta = numPorta;
+        this.prontoParaIniciar = !((numSalas == 0) || (numPorta == 0) || (numUsuariosPorSalas == 0));
+        return INSTANCE;
+    }
+
+    public ServerConnection setNumUsuariosPorSalas(int numUsuariosPorSalas) {
+        this.numUsuariosPorSalas = numUsuariosPorSalas;
+        this.prontoParaIniciar = !((numSalas == 0) || (numPorta == 0) || (numUsuariosPorSalas == 0));
+        return INSTANCE;
+    }
+
+    public void start() throws Exception {
+        if (prontoParaIniciar) {
+            // TODO
+        } else {
+            throw new Exception("Não foram informadas todas informações para iniciar");
+        }
+    }
+    
+    
+    
+    
 }

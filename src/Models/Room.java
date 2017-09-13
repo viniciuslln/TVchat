@@ -5,6 +5,7 @@
  */
 package Models;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
@@ -14,6 +15,11 @@ import javafx.collections.ObservableList;
 public class Room {
     int id;
     ObservableList<User> usuarios;
+
+    public Room(int id) {
+        this.id = id;
+        this.usuarios = FXCollections.observableArrayList();
+    }
 
     public int getId() {
         return id;

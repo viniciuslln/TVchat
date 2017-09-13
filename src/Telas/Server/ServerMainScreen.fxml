@@ -18,7 +18,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane id="AnchorPane" prefHeight="450.0" prefWidth="986.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.101" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Telas.Server.ServerMainScreenController">
+<AnchorPane id="AnchorPane" prefHeight="450.0" prefWidth="986.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.131" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Telas.Server.ServerMainScreenController">
     <stylesheets>
         <URL value="@servermainscreen.css" />
     </stylesheets>
@@ -159,7 +159,7 @@
                   </VBox>
                </children>
             </AnchorPane>
-            <AnchorPane stylesheets="@servermainscreen.css" GridPane.columnIndex="1">
+            <AnchorPane maxWidth="400.0" prefWidth="200.0" stylesheets="@servermainscreen.css" GridPane.columnIndex="1">
                <children>
                   <TabPane fx:id="tabPaneSalas" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <tabs>
